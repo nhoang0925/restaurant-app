@@ -25,6 +25,12 @@ const ReserveTable = () => {
     var date = 2022-10-24;
     var time = 1430;
     var size = 2;
+    const status = true;
+    var available = "";
+    if (status) {
+        available = "Available";
+    }
+    var capacity = 2;
 
     /*
     o	User enters name, phone, email, date and time (date picker), and # of guests for dining and system presents available tables.
@@ -66,12 +72,18 @@ const ReserveTable = () => {
 
             <div><Typography align="left" style={{paddingTop: "10px" }}>
                 &nbsp; &nbsp;Reservation Time &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="time" style={{fontSize: 15}}></input>
+                <input type="time" style={{fontSize: 15, paddingInlineEnd: "75px"}}></input>
             </Typography></div>
 
             <div><Typography align="left" style={{paddingTop: "10px" }}>
                 &nbsp; &nbsp;Party Size &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
-                <input type="number" style={{fontSize: 15}}></input>
+                <select multiple>
+                    <option value = "2">2</option>
+                    <option value = "4">4</option>
+                    <option value = "6">6</option>
+                    <option value = "8">8</option>
+                </select>
+                
             </Typography></div>
            
             <Typography align="center" style={{paddingTop: "20px" }}></Typography>
@@ -101,7 +113,7 @@ const ReserveTable = () => {
                                 <TableCell align = "left" component="th" scope="row">{"#" + "1"}</TableCell>
                                 <TableCell align="center">{"T1"}</TableCell>
                                 <TableCell align="center">{"2"}</TableCell>
-                                <TableCell align="center">{"Available"}</TableCell>                                             
+                                <TableCell align="center">{available}</TableCell>                                             
                                 <TableCell align="right">{"#" + "1"}</TableCell>                                             
                             </TableRow>
                         }
@@ -110,7 +122,7 @@ const ReserveTable = () => {
             </TableContainer>
             }
 
-            { user_id === 0 ?
+            { capacity === 2 && status === true ?
             <div style={{ padding: "100px" }}>
                         <>
                             {reserves.length > 0 ? (
