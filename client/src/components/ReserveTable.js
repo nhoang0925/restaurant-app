@@ -25,22 +25,33 @@ const ReserveTable = () => {
         email:"",
         date: "",
         time: "",
-        capacity: "",
-        table:"" 
+        size: "",
+        table:"",
+        additionalTable:"" 
     })
 
     
     var date;
     var time;
-    var capacity;
+    var size;
 
     const [searches, setSearches]= useState(0);
     const getSearch = () => {
         axios
             .get(`/api/getTable`, {
-                params: { date : date , time : time , capacity : capacity }
+                params: { date : date , time : time , size : size }
             })
-            .then((res) => {
+            .then((res) => { 
+                if (res.data.length == 0) {
+                    axios
+                        .get(`/api/getTableSmaller`, {
+                            params: { date : date , time : time , size : size }
+                        })
+                        .then((res) => {
+                            console.log(res);
+                            setSearches(res.data);
+                        })                      
+                }
                 console.log(res);
                 setSearches(res.data);
             })
@@ -52,18 +63,23 @@ const ReserveTable = () => {
     console.log(searches);
 
 
+    function changeHandle(e) {
+        const searchData = {...data}
+        searchData[e.target.id] = e.target.value
+        setData(searchData)
+
+        date = searchData.date
+        time = searchData.time
+        size = searchData.size
+        getSearch();
+    }
 
     function handle(e){
 
         const newData = {...data}
         newData[e.target.id] = e.target.value
-
         setData(newData)
         console.log(newData)
-        date = newData.date
-        time = newData.time
-        capacity = newData.capacity
-        getSearch();
     }
         
 
@@ -76,8 +92,9 @@ const ReserveTable = () => {
             email: data.email,
             date: data.date,
             time: data.time,
-            capacity: data.capacity,
-            table: data.table
+            size: data.size,
+            table: data.table,
+            additionalTable: data.additionalTable
        })
         .then(res=>{
             console.log(res.data);
@@ -89,31 +106,16 @@ const ReserveTable = () => {
     <div>
         <h1><Typography align="left" style={{color:'red', fontSize: 50}}>Make a Reservation</Typography></h1>
         <Typography align="center" style={{paddingTop: "30px"}}></Typography>
-        <h4>&nbsp;Search for a Table</h4>
+        <h4>&nbsp;&emsp;&emsp;Search for a Table</h4>
         <form onSubmit={(e)=> submit(e)}>
-            <div><Typography align="left" style={{paddingTop: "5px" }}>
-                Name &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;         
-                <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="name" value={data.name}/>
-            </Typography></div>
-
             <div><Typography align="left" style={{paddingTop: "10px" }}>
-                Phone Number &emsp;&ensp;
-                <input type = "tel" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="phone" value={data.phone}/>
-            </Typography></div>
-
-            <div><Typography align="left" style={{paddingTop: "10px" }}>
-                Email &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;
-                <input type = "email" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="email" value={data.email}/>
-            </Typography></div>
-
-            <div><Typography align="left" style={{paddingTop: "10px" }}>
-                Reservation Date &ensp;
-                <input type="date" id="date" name="date" onChange={(e)=>handle(e)} value={data.date}></input>
+            &emsp;Reservation Date &ensp;
+                <input type="date" id="date" name="date" onChange={(e)=>changeHandle(e)} value={data.date}></input>
             </Typography></div> 
 
             <div><Typography align="left" style={{paddingTop: "10px" }}>
-                Reservation Time &nbsp;
-                <select id="time" name="time" onChange={(e)=>handle(e)} value={data.time}>
+            &emsp;Reservation Time &nbsp;
+                <select id="time" name="time" onChange={(e)=>changeHandle(e)} value={data.time}>
                     <option value = ""></option>
                     <option value = "110000">11AM</option>
                     <option value = "120000">12PM</option>
@@ -130,8 +132,8 @@ const ReserveTable = () => {
             </Typography></div>
 
             <div><Typography align="left" style={{paddingTop: "10px" }}>
-                Party Size &emsp;&emsp;&emsp;&ensp;
-                <select id="capacity" name="capacity" onChange={(e)=>handle(e)} value={data.capacity}>
+            &emsp;Party Size &emsp;&emsp;&emsp;&ensp;
+                <select id="size" name="size" onChange={(e)=>changeHandle(e)} value={data.size}>
                     <option value = ""></option>
                     <option value = "2">2</option>
                     <option value = "4">4</option>
@@ -143,7 +145,7 @@ const ReserveTable = () => {
         </form>
         <form>
             <Typography align="center" style={{paddingTop: "30px" }}></Typography>
-            <h4>&nbsp;Table Availability</h4>
+            <h4>&nbsp;&emsp;Table Availability</h4>
 
             { 
             <div >
@@ -152,19 +154,19 @@ const ReserveTable = () => {
                                 <>
                                     <TableContainer
                                         component={Paper}
-                                        style={{ width: 1000, paddingTop: "0px" }}>
+                                        style={{ width: 400, paddingTop: "0px", paddingLeft: "5px" }}>
                                         <Table aria-label="simple table">
                                             <TableHead>
                                                 <TableRow>
-                                                    <TableCell align="left" style={{backgroundColor: '#696773', color: 'white'}}>Table Number</TableCell>
-                                                    <TableCell align="left" style={{backgroundColor: '#696773', color: 'white'}}>Capacity</TableCell>
+                                                    <TableCell align="center" style={{backgroundColor: '#696773', color: 'white'}}>Table Number</TableCell>
+                                                    <TableCell align="center" style={{backgroundColor: '#696773', color: 'white'}}>Capacity</TableCell>
                                                 </TableRow>
                                             </TableHead>
-                                            <TableBody>
+                                            <TableBody> 
                                                 {searches.map((search) => (
                                                     <TableRow key={search.table_id}>
-                                                        <TableCell align="left" component="th" scope="row">{"#" + search.table_id}</TableCell>
-                                                        <TableCell align="left">{search.capacity}</TableCell>                                                                                
+                                                        <TableCell align="center" component="th" scope="row">{"#" + search.table_id}</TableCell>
+                                                        <TableCell align="center">{search.capacity}</TableCell>                                                                                
                                                     </TableRow>
                                                 ))}
                                             </TableBody>
@@ -173,31 +175,42 @@ const ReserveTable = () => {
                                 </>
                             ) : (
                                 <></>
-                            )
-                            }
+                            )}                           
                         </>
             </div>
         }        
         </form>
         <form onSubmit={(e)=> submit(e)}>
-        <div><Typography align="left" style={{paddingTop: "10px" }}>
-                Table &emsp;&emsp;&emsp;&ensp;
-                <select id="table" name="table" onChange={(e)=>handle(e)} value={data.table}>
-                    <option value = ""></option>
-                    <option value = "1">1</option>
-                    <option value = "2">2</option>
-                    <option value = "3">3</option>
-                    <option value = "4">4</option>
-                    <option value = "5">5</option>
-                    <option value = "6">6</option>
-                    <option value = "7">7</option>
-                    <option value = "8">8</option>
-                    <option value = "9">9</option>
-                </select>              
+            <div><Typography align="left" style={{paddingTop: "5px" }}>
+            &emsp;Table &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;         
+                <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="table" value={data.table} placeholder="Enter table # to reserve"/>
+            </Typography></div>
+
+            <div><Typography align="left" style={{paddingTop: "5px" }}>
+            &emsp;Add Table &emsp;&emsp;&emsp;&ensp;         
+                <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="additionalTable" value={data.additionalTable} placeholder="Enter the second table #"/>
             </Typography></div>
 
             <Typography align="center" style={{paddingTop: "30px" }}></Typography>
-            &nbsp;<button type="submit"><Typography align="center">Reserve</Typography></button>   
+            <h4>&nbsp;&emsp;Information</h4>
+
+            <div><Typography align="left" style={{paddingTop: "5px" }}>
+            &emsp;Name &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;         
+                <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="name" value={data.name}/>
+            </Typography></div>
+
+            <div><Typography align="left" style={{paddingTop: "10px" }}>
+            &emsp;Phone Number &emsp;&ensp;
+                <input type = "tel" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="phone" value={data.phone}/>
+            </Typography></div>
+
+            <div><Typography align="left" style={{paddingTop: "10px" }}>
+            &emsp;Email &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;
+                <input type = "email" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="email" value={data.email}/>
+            </Typography></div>
+
+            <Typography align="center" style={{paddingTop: "30px" }}></Typography>
+            &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button type="submit"><Typography align="center">Reserve</Typography></button>   
         </form>
     </div>
     )

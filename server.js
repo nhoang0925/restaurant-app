@@ -24,14 +24,29 @@ app.get('/api/getTable',(req,res)=>{
  
     let date = req.query.date;
     let time = req.query.time;
-    let capacity = req.query.capacity;
-
-    //let sql = "SELECT tables.table_id, capacity, isAvailable FROM tables WHERE tables.capacity=? AND tables.isAvailable=1";
+    let size = req.query.size;
 
     let sql = "SELECT table_id, capacity FROM tables WHERE NOT EXISTS (SELECT 1 FROM reservations WHERE reservations.table_id = tables.table_id AND reservations.date=? AND reservations.time=?) AND tables.capacity=?";
   
     let response = {};
-    db.query(sql, [date, time, capacity], (error, result) => {
+    db.query(sql, [date, time, size], (error, result) => {
+      if (error) throw error;
+      response = JSON.parse(JSON.stringify(result));
+      return res.send(response);
+    });
+    
+})
+
+app.get('/api/getTableSmaller',(req,res)=>{
+ 
+    let date = req.query.date;
+    let time = req.query.time;
+    let size = req.query.size;
+
+    let sql = "SELECT table_id, capacity FROM tables WHERE NOT EXISTS (SELECT 1 FROM reservations WHERE reservations.table_id = tables.table_id AND reservations.date=? AND reservations.time=?) AND tables.capacity<?";
+
+    let response = {};
+    db.query(sql, [date, time, size], (error, result) => {
       if (error) throw error;
       response = JSON.parse(JSON.stringify(result));
       return res.send(response);
@@ -45,22 +60,30 @@ app.post('/api/reserve',(req,res)=>{
     const email = req.body.email;
     const date = req.body.date;
     const time = req.body.time;
-    const capacity = req.body.capacity;
+    const size = req.body.size;
     const table = req.body.table;
+    const additionalTable = req.body.additionalTable;
 
     console.log(name)
     console.log(phone)
     console.log(email)
     console.log(date)
     console.log(time)
-    console.log(capacity)
-    console.log(table);
+    console.log(size)
+    console.log(table)
+    console.log(additionalTable);
 
-    
-    const sqlInsert = `INSERT INTO dbreservetable.reservations (name, phone, email, date, time, capacity, table_id) VALUES ('${req.body.name}','${req.body.phone}','${req.body.email}','${req.body.date}','${req.body.time}', '${req.body.capacity}','${req.body.table}')`;
+    if(additionalTable > null) {
+        const sqlInsert2 = `INSERT INTO dbreservetable.reservations (name, phone, email, date, time, party_size, table_id) VALUES ('${req.body.name}','${req.body.phone}','${req.body.email}','${req.body.date}','${req.body.time}', '${req.body.size}','${req.body.additionalTable}')`;
+        db.query(sqlInsert2,(err,result)=>{
+            console.log(result);
+    });          
+    }
+
+    const sqlInsert = `INSERT INTO dbreservetable.reservations (name, phone, email, date, time, party_size, table_id) VALUES ('${req.body.name}','${req.body.phone}','${req.body.email}','${req.body.date}','${req.body.time}', '${req.body.size}','${req.body.table}')`;
     db.query(sqlInsert,(err,result)=>{
         console.log(result);
-    });
+    });  
 });
 
 app.listen(5000,()=>{
