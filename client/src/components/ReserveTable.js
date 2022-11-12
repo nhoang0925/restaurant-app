@@ -60,9 +60,9 @@ const ReserveTable = () => {
 
         setData(newData)
         console.log(newData)
-        date = 20221111
-        time = 200000
-        capacity = 8
+        date = newData.date
+        time = newData.time
+        capacity = newData.capacity
         getSearch();
     }
         
