@@ -86,6 +86,27 @@ app.post('/api/reserve',(req,res)=>{
     });  
 });
 
+app.post('/api/register',(req,res)=>{
+    const username = req.body.username;
+    const password = req.body.password;
+    const email_r = req.body.email_r;
+    const billing_address = req.body.billing_address;
+    const mailing_address = req.body.mailing_address;
+
+    console.log(username)
+    console.log(password)
+    console.log(email_r)
+    console.log(billing_address)
+    console.log(mailing_address)
+
+
+    const sqlInsert3 = `INSERT INTO logins.loginlist(user,password,email,billing,mailing)VALUES ('${req.body.username}','${req.body.password}','${req.body.email_r}','${req.body.billing_address}','${req.body.mailing_address}')`;
+    db.query(sqlInsert3,(err,result)=>{
+        if(err) throw err;
+        console.log(result);
+    });  
+});
+
 app.listen(5000,()=>{
     console.log("Running on server 5000");
 });
