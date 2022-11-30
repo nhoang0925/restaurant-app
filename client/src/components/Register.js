@@ -13,7 +13,6 @@ const Register = () => {
         username:"",
         password:"",
         name_r:"",
-        email_r:"",
         billing_address: "",
         mailing_address: "",
         payment_r:"",
@@ -35,7 +34,6 @@ const Register = () => {
                         username: data.username,
                     password: data.password,
                     name_r: data.name_r,
-                    email_r: data.email_r,
                     billing_address: data.billing_address,
                     mailing_address: data.mailing_address,
                     payment_r: data.payment_r
@@ -68,11 +66,6 @@ const Register = () => {
         </Typography></div>
 
         <div><Typography align="left" style={{paddingTop: "5px" }}>
-                &nbsp;&nbsp; Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               
-                <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="email_r" value={data.email_r} />
-        </Typography></div>
-
-        <div><Typography align="left" style={{paddingTop: "5px" }}>
                 &nbsp;&nbsp; Billing Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               
                 <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="billing_address" value={data.billing_address} />
         </Typography></div>
@@ -83,8 +76,13 @@ const Register = () => {
         </Typography></div>
 
         <div><Typography align="left" style={{paddingTop: "5px" }}>
-                &nbsp;&nbsp; Payment Pref &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               
-                <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="payment_r" value={data.payment_r} placeholder="cash, credit, check"/>
+                &nbsp;&nbsp; Payment Preference &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="payment_r" name="payment_r" onChange={(e)=>handle(e)} value={data.payment_r}>
+                    <option value = ""></option>
+                    <option value = "cash">Cash</option>
+                    <option value = "credit">Credit</option>
+                    <option value = "check">Check</option>
+                </select>
         </Typography></div>
 
         <Typography align="center" style={{paddingTop: "20px" }}></Typography>

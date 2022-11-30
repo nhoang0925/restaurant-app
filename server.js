@@ -90,21 +90,20 @@ app.post('/api/register',(req,res)=>{
     const username = req.body.username;
     const password = req.body.password;
     const name_r = req.body.name_r;
-    const email_r = req.body.email_r;
     const billing_address = req.body.billing_address;
     const mailing_address = req.body.mailing_address;
     const payment_r = req.body.payment_r;
+    diner_id = Math.floor((Math.random() * 9) + 1);
 
     console.log(username)
     console.log(password)
     console.log(name_r)
-    console.log(email_r)
     console.log(billing_address)
     console.log(mailing_address)
     console.log(payment_r)
 
 
-    const sqlInsert3 = `INSERT INTO logins.loginlist(user,password,name,email,billing,mailing,payment)VALUES ('${req.body.username}','${req.body.password}','${req.body.name_r}','${req.body.email_r}','${req.body.billing_address}','${req.body.mailing_address}','${req.body.payment_r}')`;
+    const sqlInsert3 = `INSERT INTO logins.loginlist(user,password,name,billing,mailing,payment,diner)VALUES ('${req.body.username}','${req.body.password}','${req.body.name_r}','${req.body.billing_address}','${req.body.mailing_address}','${req.body.payment_r}','${diner_id}')`;
     db.query(sqlInsert3,(err,result)=>{
         if(err) throw err;
         console.log(result);
