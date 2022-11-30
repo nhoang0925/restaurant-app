@@ -1,0 +1,15 @@
+﻿#field 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:16px;
+}
+
+#header
+{
+    background-color:red;
+    color:white;
+    font-size: 30px;
+    text-align:center;
+}
