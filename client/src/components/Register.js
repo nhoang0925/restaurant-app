@@ -12,9 +12,11 @@ const Register = () => {
         const [data, setData] = useState({
         username:"",
         password:"",
+        name_r:"",
         email_r:"",
         billing_address: "",
         mailing_address: "",
+        payment_r:"",
         })
 
 
@@ -32,14 +34,16 @@ const Register = () => {
                 axios.post(url,{
                         username: data.username,
                     password: data.password,
+                    name_r: data.name_r,
                     email_r: data.email_r,
                     billing_address: data.billing_address,
-                    mailing_address: data.mailing_address
+                    mailing_address: data.mailing_address,
+                    payment_r: data.payment_r
                })
                 .then(res=>{
                     console.log(res.data);
                 })
-            };
+        };
 
     return(
     <div className = 'register'>
@@ -59,6 +63,11 @@ const Register = () => {
         </Typography></div>
 
         <div><Typography align="left" style={{paddingTop: "5px" }}>
+                &nbsp;&nbsp; Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               
+                <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="name_r" value={data.name_r} />
+        </Typography></div>
+
+        <div><Typography align="left" style={{paddingTop: "5px" }}>
                 &nbsp;&nbsp; Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               
                 <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="email_r" value={data.email_r} />
         </Typography></div>
@@ -71,6 +80,11 @@ const Register = () => {
         <div><Typography align="left" style={{paddingTop: "5px" }}>
                 &nbsp;&nbsp; Mailing Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               
                 <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="mailing_address" value={data.mailing_address} />
+        </Typography></div>
+
+        <div><Typography align="left" style={{paddingTop: "5px" }}>
+                &nbsp;&nbsp; Payment Pref &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               
+                <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="payment_r" value={data.payment_r} placeholder="cash, credit, check"/>
         </Typography></div>
 
         <Typography align="center" style={{paddingTop: "20px" }}></Typography>

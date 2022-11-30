@@ -89,22 +89,50 @@ app.post('/api/reserve',(req,res)=>{
 app.post('/api/register',(req,res)=>{
     const username = req.body.username;
     const password = req.body.password;
+    const name_r = req.body.name_r;
     const email_r = req.body.email_r;
     const billing_address = req.body.billing_address;
     const mailing_address = req.body.mailing_address;
+    const payment_r = req.body.payment_r;
 
     console.log(username)
     console.log(password)
+    console.log(name_r)
     console.log(email_r)
     console.log(billing_address)
     console.log(mailing_address)
+    console.log(payment_r)
 
 
-    const sqlInsert3 = `INSERT INTO logins.loginlist(user,password,email,billing,mailing)VALUES ('${req.body.username}','${req.body.password}','${req.body.email_r}','${req.body.billing_address}','${req.body.mailing_address}')`;
+    const sqlInsert3 = `INSERT INTO logins.loginlist(user,password,name,email,billing,mailing,payment)VALUES ('${req.body.username}','${req.body.password}','${req.body.name_r}','${req.body.email_r}','${req.body.billing_address}','${req.body.mailing_address}','${req.body.payment_r}')`;
     db.query(sqlInsert3,(err,result)=>{
         if(err) throw err;
         console.log(result);
     });  
+});
+
+app.post('/api/login',(req,res)=>{
+    const login_username = req.body.login_username;
+    const login_password = req.body.login_password;
+
+    console.log(login_username)
+    console.log(login_password)
+
+    db.query(
+        "SELECT * FROM logins.loginlist WHERE user = ? AND password = ?",
+        [login_username,login_password],
+        (err, result) => {
+            if(err){
+                res.send({err: err})
+            } 
+
+            if(result.length > 0){
+                console.log('login success')
+            } else {
+            console.log('login fail')
+            }
+        }
+    )
 });
 
 app.listen(5000,()=>{
