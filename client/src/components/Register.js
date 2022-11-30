@@ -10,7 +10,7 @@ const Register = () => {
         const url = 'http://localhost:3000/api/register'
 
         const [data, setData] = useState({
-        user:"",
+        username:"",
         password:"",
         email_r:"",
         billing_address: "",
@@ -30,7 +30,7 @@ const Register = () => {
                 alert("Successfully Registered");
                 e.preventDefault();
                 axios.post(url,{
-                    user: data.name,
+                        username: data.username,
                     password: data.password,
                     email_r: data.email_r,
                     billing_address: data.billing_address,
@@ -49,8 +49,8 @@ const Register = () => {
 
         <form onSubmit={(e)=> submit(e)}>
         <div><Typography align="left" style={{paddingTop: "5px" }}>
-                &nbsp;&nbsp; User &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            
-                <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="user" value={data.user} />
+                &nbsp;&nbsp; Username &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            
+                <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="username" value={data.username} />
         </Typography></div>
 
         <div><Typography align="left" style={{paddingTop: "5px" }}>
