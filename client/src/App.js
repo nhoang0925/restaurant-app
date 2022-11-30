@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import ReserveTable from "./components/ReserveTable";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Field from './components/Field';
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
             <Routes>
                 <Fragment><Route path="/" element={<Home />} /></Fragment>
                 <Fragment><Route path="/reserve" element={<ReserveTable />} /></Fragment>
+                <Fragment><Route path="/reserve/field" element={<Field />} /></Fragment>
                 <Fragment><Route path="/Login" element={<Login />} /></Fragment>
                 <Fragment><Route path="/Register" element={<Register />} /></Fragment>
             </Routes>
