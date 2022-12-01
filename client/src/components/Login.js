@@ -56,9 +56,8 @@ const Login = () => {
 
     return(
     <div className = 'register'>
-        <h1><Typography align="left" style={{color:'orange', fontSize: 50}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Register</Typography></h1>
+        <h1><Typography align="left" style={{color:'orange', fontSize: 50}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login</Typography></h1>
         <Typography align="center" style={{paddingTop: "30px"}}></Typography>
-        <h4>&nbsp;Enter Login Information</h4>
 
         <form onSubmit={(e)=> submit(e)}>
         <div><Typography align="left" style={{paddingTop: "5px" }}>

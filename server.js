@@ -63,6 +63,10 @@ app.post('/api/reserve',(req,res)=>{
     const size = req.body.size;
     const table = req.body.table;
     const additionalTable = req.body.additionalTable;
+    const cardName = req.body.cardName;
+    const cardNumber = req.body.cardNumber;
+    const cardExpiration = req.body.cardExpiration;
+    const cardCvv = req.body.cardCvv;
 
     console.log(name)
     console.log(phone)
@@ -72,6 +76,10 @@ app.post('/api/reserve',(req,res)=>{
     console.log(size)
     console.log(table)
     console.log(additionalTable);
+    console.log(cardName)
+    console.log(cardNumber)
+    console.log(cardExpiration)
+    console.log(cardCvv)
 
     if(additionalTable > null) {
         const sqlInsert2 = `INSERT INTO dbreservetable.reservations (name, phone, email, date, time, party_size, table_id) VALUES ('${req.body.name}','${req.body.phone}','${req.body.email}','${req.body.date}','${req.body.time}', '${req.body.size}','${req.body.additionalTable}')`;
@@ -84,6 +92,13 @@ app.post('/api/reserve',(req,res)=>{
     db.query(sqlInsert,(err,result)=>{
         console.log(result);
     });  
+
+    if (cardName !== null) {
+        const sqlInsert4 = `INSERT INTO dbreservetable.creditcard_info (cardName, cardNumber, cardExpiration, cardCvv, reservation_id) VALUES ('${req.body.cardName}','${req.body.cardNumber}','${req.body.cardExpiration}','${req.body.cardCvv}', (SELECT reservation_id FROM dbreservetable.reservations ORDER BY reservation_id DESC LIMIT 1))`;
+        db.query(sqlInsert4,(err,result)=>{
+            console.log(result);
+    });  
+    }
 });
 
 app.post('/api/register',(req,res)=>{

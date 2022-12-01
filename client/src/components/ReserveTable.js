@@ -27,6 +27,10 @@ const ReserveTable = () => {
         size: "",
         table:"",
         additionalTable:"",
+        cardName:"",
+        cardNumber:"",
+        cardExpiration:"",
+        cardCvv:""
     })
 
     const [formValid, setFormValid] = useState(0);
@@ -35,7 +39,20 @@ const ReserveTable = () => {
     var time;
     var size;
 
-    const [searches, setSearches]= useState(0);
+    function isWeekend(date) {
+        var convertDate = new Date(date);
+        return convertDate.getDay() === 5 || convertDate.getDay() === 6;
+    }
+
+    function isHoliday(date) {
+        const holidays = new Set(["2022-12-24", "2022-12-25", "2022-12-31", 
+        "2023-01-01", "2023-01-16", "2023-05-29", "2023-06-19", "2023-07-04", "2023-09-04", "2023-10-09", "2023-11-10", "2023-11-23", "2023-12-24", "2023-12-25", "2023-12-31",
+        "2023-02-14", "2023-02-21", "2023-03-17", "2023-04-09", "2023-05-05", "2023-05-14", "2023-06-18"]);
+        return holidays.has(date);
+    }
+   
+
+    const [searches, setSearches]= useState(0); 
     const getSearch = () => {
         axios
             .get(`/api/getTable`, {
@@ -114,7 +131,11 @@ const ReserveTable = () => {
             time: data.time,
             size: data.size,
             table: data.table,
-            additionalTable: data.additionalTable
+            additionalTable: data.additionalTable,
+            cardName: data.cardName,
+            cardNumber: data.cardNumber,
+            cardExpiration: data.cardExpiration,
+            cardCvv: data.cardCvv
        })
         .then(res=>{
             console.log(res.data);            
@@ -124,35 +145,33 @@ const ReserveTable = () => {
 
     return(
     <div>
-        <h1><Typography align="left" style={{color:'red', fontSize: 50}}>Make a Reservation</Typography></h1>
-
-        
+        <h1 id="title">Make a Reservation</h1> 
         <Typography align="center" style={{paddingTop: "30px"}}></Typography>
-        <h4>&nbsp;&emsp;&emsp;Search for a Table</h4>
+        <h4 id="title_2">Search for a Table</h4>
         <form onSubmit={(e)=> submit(e)}>
 
-            <div><Typography align="left" style={{paddingTop: "5px" }}>
+            <div id="field"><Typography align="left" style={{paddingTop: "5px" }}>
             &emsp;Name &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;         
-                <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="name" value={data.name} required/>
+                <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="name" value={data.name} required placeholder="Enter Name"/>
             </Typography></div>
 
-            <div><Typography align="left" style={{paddingTop: "10px" }}>
+            <div id="field"><Typography align="left" style={{paddingTop: "10px" }}>
             &emsp;Phone Number &emsp;&ensp;
-                <input type = "tel" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="phone" value={data.phone} required/>
+                <input type = "tel" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="phone" value={data.phone} required placeholder="Enter 10-digit Tel Number"/>
             </Typography></div>
 
-            <div><Typography align="left" style={{paddingTop: "10px" }}>
+            <div id="field"><Typography align="left" style={{paddingTop: "10px" }}>
             &emsp;Email &emsp;&emsp;&emsp;&emsp;&ensp;&emsp;
-                <input type = "email" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="email" value={data.email} required/>
+                <input type = "email" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="email" value={data.email} required placeholder="Enter Email Address"/>
             </Typography></div>
 
-            <div><Typography align="left" style={{paddingTop: "10px" }}>
-            &emsp;Reservation Date &ensp;
+            <div id="field"><Typography align="left" style={{paddingTop: "10px" }}>
+            &emsp;Reservation Date &ensp;&ensp;&ensp;&ensp;&ensp;
                 <input type="date" id="date" name="date" onChange={(e)=>changeHandle(e)} value={data.date}></input>
             </Typography></div> 
 
-            <div><Typography align="left" style={{paddingTop: "10px" }}>
-            &emsp;Reservation Time &nbsp;
+            <div id="field"><Typography align="left" style={{paddingTop: "10px" }}>
+            &emsp;Reservation Time &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;
                 <select id="time" name="time" onChange={(e)=>changeHandle(e)} value={data.time}>
                     <option value = ""></option>
                     <option value = "110000">11AM</option>
@@ -169,8 +188,8 @@ const ReserveTable = () => {
                 </select>
             </Typography></div>
 
-            <div><Typography align="left" style={{paddingTop: "10px" }}>
-            &emsp;Party Size &emsp;&emsp;&emsp;&ensp;
+            <div id="field"><Typography align="left" style={{paddingTop: "10px" }}>
+            &emsp;Party Size &emsp;&emsp;&emsp;&ensp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;
                 <select id="size" name="size" onChange={(e)=>changeHandle(e)} value={data.size}>
                     <option value = ""></option>
                     <option value = "2">2</option>
@@ -182,17 +201,48 @@ const ReserveTable = () => {
            
         </form>
         <form>
+
+        <Typography align="center" style={{paddingTop: "30px" }}></Typography>
+        { 
+            <div >
+                        <>
+                            {isWeekend(data.date) || isHoliday(data.date) ? (
+                                <><><><><><>
+                                <div id="alert">A hold fee will be charged for reservations made on weekends and holidays.</div>
+                                <div id="alert">A minimum of $10 will be charged for no-show.</div>
+                            </><div id="field"><Typography align="left" style={{ paddingTop: "5px" }}>
+                                &emsp; Name on Card &emsp;&emsp; 
+                                <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="cardName" value={data.cardName} placeholder="Enter Name on Card"/>
+                            </Typography></div></><div id="field"><Typography align="left" style={{ paddingTop: "5px" }}>
+                                &emsp; Card Number &emsp; &ensp; &ensp;
+                                <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="cardNumber" value={data.cardNumber} placeholder="Enter 16-digit CC Number"/>
+                            </Typography></div></><div></div></><div><div id="field"><Typography align="left" style={{ paddingTop: "5px" }}>
+                                &emsp; Expiration &emsp; &emsp; &ensp;&ensp;&ensp;
+                                <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="cardExpiration" value={data.cardExpiration} placeholder="Enter 4-digit MMYY"/>
+                            </Typography></div></div></><div><div id="field"><Typography align="left" style={{ paddingTop: "5px" }}>
+                                &emsp; CVV &emsp; &emsp; &emsp; &emsp; &ensp; &ensp;&thinsp;
+                                <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="cardCvv" value={data.cardCvv} placeholder="Enter 3-digit CVV"/>
+                            </Typography></div></div></>
+                            ) : (
+                                <></>
+                            )}                           
+                        </>
+            </div>
+            }        
+
             <Typography align="center" style={{paddingTop: "30px" }}></Typography>
-            <h4>&nbsp;&emsp;Table Availability</h4>
+            <h4 id="title_2">Table Availability</h4>
 
             { 
             <div >
                         <>
+                        
                             {searches.length > 0 ? (
                                 <><><><>
+                                    <div id="field">
                                     <TableContainer
                                         component={Paper}
-                                        style={{ width: 400, paddingTop: "0px", paddingLeft: "5px" }}>
+                                        style={{width: 400, paddingTop: "5px"}}>
                                         <Table aria-label="simple table">
                                             <TableHead>
                                                 <TableRow>
@@ -210,8 +260,8 @@ const ReserveTable = () => {
                                                 ))}
                                             </TableBody>
                                         </Table>
-                                    </TableContainer>
-                                </><div><Typography align="left" style={{ paddingTop: "5px" }}>
+                                    </TableContainer></div>
+                                </><div id="field"><Typography align="left" style={{ paddingTop: "10px" }}>
                                     &emsp; Book Table &emsp; &emsp; &emsp; &emsp; &emsp; &ensp;
                                     <select id="table" name="table" style={{ fontSize: 15 }} onChange={(e) => handle(e)} value={data.table} required>
                                         <option value=""></option>
@@ -221,7 +271,7 @@ const ReserveTable = () => {
                                             </option>
                                         ))}
                                     </select>
-                                </Typography></div></><div><Typography align="left" style={{ paddingTop: "5px" }}>
+                                </Typography></div></><div id="field"><Typography align="left" style={{ paddingTop: "5px" }}>
                                     &emsp; Add Second Table &emsp; &emsp; &ensp; &ensp;
                                     <select id="additionalTable" name="additionalTable" style={{ fontSize: 15 }} onChange={(e) => handle(e)} value={data.additionalTable}>
                                         <option value=""></option>
@@ -240,8 +290,10 @@ const ReserveTable = () => {
         }        
         </form>
         <form onSubmit={(e)=> submit(e)}>
-            <Typography align="center" style={{paddingTop: "30px" }}></Typography>
-            &nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button type="submit" disabled={!formValid}><Typography align="center">Reserve</Typography></button>   
+            <div id = "field">
+            <Typography style={{paddingTop: "50px" }}></Typography>
+            <button type="submit" disabled={!formValid}><Typography align="center">Reserve</Typography></button>  
+            </div> 
         </form>
     </div>
     )
