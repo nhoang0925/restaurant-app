@@ -11,3 +11,83 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+#field 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:16px;
+}
+
+#header
+{
+    background-color:red;
+    color:white;
+    font-size: 30px;
+    text-align:center;
+}
+
+#title
+{
+    color:rgb(79, 81, 30);
+    font-size: 50px;
+    text-align:center;
+}
+
+#title_2
+{
+    background-color:rgb(137, 130, 58);
+    color:white;
+    font-size: 30px;
+    text-align:center;
+}
+
+#alert
+{
+    color:rgb(190, 46, 46);
+    font-weight: bold;
+    font-size: 20px;
+    text-align:center;
+}
+
+#alert2
+{
+    color:rgb(205, 145, 71);
+    font-weight: bold;
+    font-size: 20px;
+    text-align:center;
+}
+
+.NavBar {
+    width: 100%;
+    height: auto;
+    position: top;
+    z-index: 10;
+    top: 20px;
+  }
+  
+  .NavBar ul {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 25% 25% 25% 25%;
+        grid-template-columns: 25% 25% 25% 25%;
+    grid-row-gap: 50px;
+    list-style: none;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .NavBar ul li {
+    padding: 7px 0px;
+    background: #567456;
+    text-align: center;
+    font-weight: 500;
+    color: aliceblue;
+  }
+  
+  .NavBar ul li:hover {
+    background: #4d553a;
+  }

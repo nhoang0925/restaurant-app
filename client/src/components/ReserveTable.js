@@ -1,4 +1,5 @@
-import React, { useEffect, useState, } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 import {
@@ -73,7 +74,7 @@ const ReserveTable = () => {
                         })                      
                 }
                 console.log(res);
-                setSearches(res.data);   
+                setSearches(res.data);                  
             })
             .catch((err) => {
                 console.log(err);
@@ -91,7 +92,7 @@ const ReserveTable = () => {
         time = searchData.time
         size = searchData.size
 
-        getSearch();     
+        getSearch();    
     }
 
 
@@ -116,7 +117,8 @@ const ReserveTable = () => {
 
       
         setData(newData)
-        console.log(newData)       
+        console.log(newData)
+               
     }
         
 
@@ -142,6 +144,11 @@ const ReserveTable = () => {
         })
     };
 
+    let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+        let path = `/register`; 
+        navigate(path);
+    };
 
     return(
     <div>
@@ -237,8 +244,15 @@ const ReserveTable = () => {
             <div >
                         <>
                         
-                            {searches.length > 0 ? (
+                            {searches.length > 0 ? (                               
                                 <><><><>
+                                <div id="alert2">Register an account to earn points when dining with us!</div>
+                                <form onClick={routeChange}>
+                                    <div id = "field">
+                                        <Typography style={{paddingTop: "50px" }}></Typography>
+                                        <button type="submit" ><Typography align="center">Register</Typography></button>  
+                                    </div> 
+                                </form>
                                     <div id="field">
                                     <TableContainer
                                         component={Paper}
