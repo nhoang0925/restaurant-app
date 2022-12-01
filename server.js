@@ -93,7 +93,7 @@ app.post('/api/reserve',(req,res)=>{
         console.log(result);
     });  
 
-    if (cardName !== null) {
+    if (cardName !== "") {
         const sqlInsert4 = `INSERT INTO dbreservetable.creditcard_info (cardName, cardNumber, cardExpiration, cardCvv, reservation_id) VALUES ('${req.body.cardName}','${req.body.cardNumber}','${req.body.cardExpiration}','${req.body.cardCvv}', (SELECT reservation_id FROM dbreservetable.reservations ORDER BY reservation_id DESC LIMIT 1))`;
         db.query(sqlInsert4,(err,result)=>{
             console.log(result);
