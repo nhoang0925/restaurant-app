@@ -158,11 +158,11 @@ const ReserveTable = () => {
                 </div>
 
                 <div>
-                    <pre>Reservation Date              <input type="date" id="date" name="date" onChange={(e)=>changeHandle(e)} value={data.date} min={new Date().toISOString().split('T')[0]} ></input></pre>
+                    <pre>Reservation Date                               <input type="date" id="date" name="date" onChange={(e)=>changeHandle(e)} value={data.date} min={new Date().toISOString().split('T')[0]} ></input></pre>
                 </div> 
 
                 <div>
-                    <pre>Reservation Time                                        <select id="time" name="time" onChange={(e) => changeHandle(e)} value={data.time}>
+                    <pre>Reservation Time                                              <select id="time" name="time" onChange={(e) => changeHandle(e)} value={data.time}>
                         <option value=""></option>
                         <option value="110000">11AM</option>
                         <option value="120000">12PM</option>
@@ -179,7 +179,7 @@ const ReserveTable = () => {
                 </div>
 
                 <div>
-                    <pre>Party Size                                               <select id="size" name="size" onChange={(e) => changeHandle(e)} value={data.size}>
+                    <pre>Party Size                                                     <select id="size" name="size" onChange={(e) => changeHandle(e)} value={data.size}>
                         <option value=""></option>
                         <option value="2">2</option>
                         <option value="4">4</option>
