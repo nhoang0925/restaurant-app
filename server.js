@@ -126,9 +126,12 @@ app.post('/api/login',(req,res)=>{
             } 
 
             if(result.length > 0){
-                console.log('login success')
+                res.send(result);
+                console.log('login success');
             } else {
+                res.send({message: "wrong user/pass"})
             console.log('login fail')
+            res.end()
             }
         }
     )
