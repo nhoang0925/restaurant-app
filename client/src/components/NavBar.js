@@ -8,7 +8,6 @@ const NavBar = (props) => {
                 <Link to={'/reserve'} ><li>Reserve Table</li></Link>
                 <Link to={'/login'} ><li>Login</li></Link>
                 <Link to={'/register'} ><li>Register</li></Link>
-                <Link to={'/field'} ><li>Field</li></Link>
             </ul>
         </div>
     )
