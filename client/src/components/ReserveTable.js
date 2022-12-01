@@ -142,32 +142,27 @@ const ReserveTable = () => {
     return (
         <div>
             <h1 id="header1">Make a Reservation</h1>
-
-            <Typography align="center" style={{ paddingTop: "30px" }}></Typography>
-
             <h4 id="header4">Search for a Table</h4>
-
-            <Typography align="center" style={{ paddingTop: "30px" }}></Typography>
 
             <form id="field1" onSubmit={(e) => submit(e)}>
                 <div>
-                    <pre>Name                <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="name" value={data.name} required placeholder="Your name" /></pre>
+                    <pre>Name           <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="name" value={data.name} required placeholder="Your name" /></pre>
                 </div>
 
                 <div>
-                    <pre>Phone Number        <input type="tel" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="phone" value={data.phone} required placeholder="10-digit phone #" /></pre>
+                    <pre>Phone Number           <input type="tel" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="phone" value={data.phone} required placeholder="10-digit phone #" /></pre>
                 </div>
 
                 <div>
-                    <pre>Email               <input type="email" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="email" value={data.email} required placeholder="email@cougar.com" /></pre>
+                    <pre>Email           <input type="email" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="email" value={data.email} required placeholder="email@cougar.com" /></pre>
                 </div>
 
                 <div>
-                    <pre>Reservation Date    <input type="date" id="date" name="date" onChange={(e)=>changeHandle(e)} value={data.date} min={new Date().toISOString().split('T')[0]} ></input></pre>
+                    <pre>Reservation Date        <input type="date" id="date" name="date" onChange={(e)=>changeHandle(e)} value={data.date} min={new Date().toISOString().split('T')[0]} ></input></pre>
                 </div> 
 
                 <div>
-                    <pre>Reservation Time                 <select id="time" name="time" onChange={(e) => changeHandle(e)} value={data.time}>
+                    <pre>Reservation Time                                  <select id="time" name="time" onChange={(e) => changeHandle(e)} value={data.time}>
                         <option value=""></option>
                         <option value="110000">11AM</option>
                         <option value="120000">12PM</option>
@@ -184,7 +179,7 @@ const ReserveTable = () => {
                 </div>
 
                 <div>
-                    <pre>Party Size                          <select id="size" name="size" onChange={(e) => changeHandle(e)} value={data.size}>
+                    <pre>Party Size                                         <select id="size" name="size" onChange={(e) => changeHandle(e)} value={data.size}>
                         <option value=""></option>
                         <option value="2">2</option>
                         <option value="4">4</option>
@@ -194,8 +189,7 @@ const ReserveTable = () => {
                 </div>           
             </form>
 
-            <form>
-                <Typography align="center" style={{ paddingTop: "30px" }}></Typography>
+            <form>                
                 { 
                     <div >
                         <>
@@ -287,9 +281,7 @@ const ReserveTable = () => {
                     </div>
                 }
             </form>
-
-            <Typography align="center" style={{ paddingTop: "20px" }}></Typography>
-
+            
             <form onSubmit={(e) => submit(e)}>
                 <div id="field1">
                     <button type="submit" disabled={!formValid}><Typography align="center">Reserve</Typography></button>

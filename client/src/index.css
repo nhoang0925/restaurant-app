@@ -17,6 +17,11 @@ p
     white-space: pre-wrap;
 }
 
+pre {
+    display: inline-block;
+    font-family: sans-serif;
+    text-align: right;
+}
 
 #field 
 {
@@ -25,26 +30,28 @@ p
     align-items: center;
     background-color: darkslategray;
     color: white;
-    font-size:16px;
+    font-family: sans-serif;     
+    font-size:18px;
 }
 
-#field1 
-{
+#field1 {
     display: grid;
     justify-content: center;
     align-items: center;
     background-color: darkslategray;
     color: white;
-    font-size: 16px;
+    font-family: sans-serif;
+    font-size: 18px;
+    text-align: right;
     padding: 30px;
 }
 
-#header
-{
-    background-color:red;
-    color:white;
+#header {
+    background-color: red;
+    color: white;
+    font-family: sans-serif;
     font-size: 30px;
-    text-align:center;
+    text-align: center;
 }
 
 #header1 {
@@ -54,6 +61,7 @@ p
     background-color: darkslategray;
     color: white;
     font-size: 40px;
+    font-family: sans-serif;
     padding: 30px;
 }
 
@@ -63,39 +71,40 @@ p
     align-items: center;
     background-color: rgb(137, 130, 58);
     color: white;
+    font-family: sans-serif;
     font-size: 30px;
     padding: 30px;
 }
 
-#title
-{
-    color:rgb(79, 81, 30);
+#title {
+    color: rgb(79, 81, 30);
     font-size: 50px;
-    text-align:center;
+    text-align: center;
+    font-family: sans-serif;
 }
 
-#title_2
-{
-    background-color:rgb(137, 130, 58);
-    color:white;
+#title_2 {
+    background-color: rgb(137, 130, 58);
+    color: white;
     font-size: 30px;
-    text-align:center;
+    text-align: center;
+    font-family: sans-serif;
 }
 
-#alert
-{
-    color:rgb(190, 46, 46);
+#alert {
+    color: rgb(190, 46, 46);
     font-weight: bold;
     font-size: 20px;
-    text-align:center;
+    text-align: center;
+    font-family: sans-serif;
 }
 
-#alert2
-{
-    color:rgb(205, 145, 71);
+#alert2 {
+    color: rgb(205, 145, 71);
     font-weight: bold;
     font-size: 20px;
-    text-align:center;
+    text-align: center;
+    font-family: sans-serif;
 }
 
 .NavBar 

@@ -44,20 +44,19 @@ const Register = () =>
     return(
         <div className='register'>
             <div id ="header1">Register</div>
-            <Typography align="center" style={{ paddingTop: "30px" }}></Typography>
-
+            
             <form id="field1" onSubmit={(e) => submit(e)}>
 
                 <div>
-                    <pre>Username        <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="username" value={data.username} /></pre>
+                    <pre>Username <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="username" value={data.username} /></pre>
                 </div>
                 
                 <div>
-                    <pre>Password        <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="password" value={data.password} /></pre>
+                    <pre>Password <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="password" value={data.password} /></pre>
                 </div>
                 
                 <div>
-                    <pre>Name            <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="name_r" value={data.name_r} /></pre>
+                    <pre>Name <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="name_r" value={data.name_r} /></pre>
                 </div>
                 
                 <div>
@@ -69,7 +68,7 @@ const Register = () =>
                 </div>
                 
                 <div>
-                    <pre>Payment Preference         <select id="payment_r" name="payment_r" onChange={(e) => handle(e)} value={data.payment_r}>
+                    <pre>Payment Preference <select id="payment_r" name="payment_r" onChange={(e) => handle(e)} value={data.payment_r}>
                             <option value = ""></option>
                             <option value="cash">Cash</option>
                             <option value="credit">Credit</option>

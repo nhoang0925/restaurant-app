@@ -57,7 +57,6 @@ const Login = () => {
     return(
         <div className='register'>
             <div id="header1">Please Sign in to Continue</div>
-            <Typography align="center" style={{ paddingTop: "30px" }}></Typography>
 
             <form id = "field1" onSubmit={(e) => submit(e)}>
                 <div>
@@ -70,8 +69,7 @@ const Login = () => {
 
                 <button type="submit">Login</button>
             </form>
-            <Typography align="center" style={{ paddingTop: "30px" }}></Typography>
-
+            
             <p id="field1">
                 {loginStatus1}
                 {<br />}
