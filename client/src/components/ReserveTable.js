@@ -174,7 +174,7 @@ const ReserveTable = () => {
 
             <div id="field"><Typography align="left" style={{paddingTop: "10px" }}>
             &emsp;Reservation Date &ensp;&ensp;&ensp;&ensp;&ensp;
-                <input type="date" id="date" name="date" onChange={(e)=>changeHandle(e)} value={data.date}></input>
+                <input type="date" id="date" name="date" onChange={(e)=>changeHandle(e)} value={data.date} min={new Date().toISOString().split('T')[0]} ></input>
             </Typography></div> 
 
             <div id="field"><Typography align="left" style={{paddingTop: "10px" }}>
