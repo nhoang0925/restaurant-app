@@ -146,23 +146,23 @@ const ReserveTable = () => {
 
             <form id="field1" onSubmit={(e) => submit(e)}>
                 <div>
-                    <pre>Name           <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="name" value={data.name} required placeholder="Your name" /></pre>
+                    <pre>Name           <input type="String" style={{ fontSize: 18 }} onChange={(e) => handle(e)} id="name" value={data.name} required placeholder="Your name" /></pre>
                 </div>
 
                 <div>
-                    <pre>Phone Number           <input type="tel" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="phone" value={data.phone} required placeholder="10-digit phone #" /></pre>
+                    <pre>Phone Number           <input type="tel" style={{ fontSize: 18 }} onChange={(e) => handle(e)} id="phone" value={data.phone} required placeholder="10-digit phone #" /></pre>
                 </div>
 
                 <div>
-                    <pre>Email           <input type="email" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="email" value={data.email} required placeholder="email@cougar.com" /></pre>
+                    <pre>Email           <input type="email" style={{ fontSize: 18 }} onChange={(e) => handle(e)} id="email" value={data.email} required placeholder="email@cougar.com" /></pre>
                 </div>
 
                 <div>
-                    <pre>Reservation Date        <input type="date" id="date" name="date" onChange={(e)=>changeHandle(e)} value={data.date} min={new Date().toISOString().split('T')[0]} ></input></pre>
+                    <pre>Reservation Date              <input type="date" id="date" name="date" onChange={(e)=>changeHandle(e)} value={data.date} min={new Date().toISOString().split('T')[0]} ></input></pre>
                 </div> 
 
                 <div>
-                    <pre>Reservation Time                                  <select id="time" name="time" onChange={(e) => changeHandle(e)} value={data.time}>
+                    <pre>Reservation Time                                        <select id="time" name="time" onChange={(e) => changeHandle(e)} value={data.time}>
                         <option value=""></option>
                         <option value="110000">11AM</option>
                         <option value="120000">12PM</option>
@@ -179,7 +179,7 @@ const ReserveTable = () => {
                 </div>
 
                 <div>
-                    <pre>Party Size                                         <select id="size" name="size" onChange={(e) => changeHandle(e)} value={data.size}>
+                    <pre>Party Size                                               <select id="size" name="size" onChange={(e) => changeHandle(e)} value={data.size}>
                         <option value=""></option>
                         <option value="2">2</option>
                         <option value="4">4</option>
@@ -194,88 +194,145 @@ const ReserveTable = () => {
                     <div >
                         <>
                             {isWeekend(data.date) || isHoliday(data.date) ? (
-                                <><><><><><>
-                                <div id="alert">A hold fee will be charged for reservations made on weekends and holidays.</div>
-                                <div id="alert">A minimum of $10 will be charged for no-show.</div>
-                            </><div id="field"><Typography align="left" style={{ paddingTop: "5px" }}>
-                                &emsp; Name on Card &emsp;&emsp; 
-                                <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="cardName" value={data.cardName} placeholder="Enter Name on Card"/>
-                            </Typography></div></><div id="field"><Typography align="left" style={{ paddingTop: "5px" }}>
-                                &emsp; Card Number &emsp; &ensp; &ensp;
-                                <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="cardNumber" value={data.cardNumber} placeholder="Enter 16-digit CC Number"/>
-                            </Typography></div></><div></div></><div><div id="field"><Typography align="left" style={{ paddingTop: "5px" }}>
-                                &emsp; Expiration &emsp; &emsp; &ensp;&ensp;&ensp;
-                                <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="cardExpiration" value={data.cardExpiration} placeholder="Enter 4-digit MMYY"/>
-                            </Typography></div></div></><div><div id="field"><Typography align="left" style={{ paddingTop: "5px" }}>
-                                &emsp; CVV &emsp; &emsp; &emsp; &emsp; &ensp; &ensp;&thinsp;
-                                <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="cardCvv" value={data.cardCvv} placeholder="Enter 3-digit CVV"/>
-                            </Typography></div></div></>
+                                <>
+                                    <>
+                                        <>
+                                            <>
+                                                <>
+                                                    <>
+                                                        <div id="alert">A hold fee will be charged for reservations made on weekends and holidays.</div>
+                                                        <div id="alert">A minimum of $10 will be charged for no-show.</div>
+                                                    </>
+
+                                                    <div id="field1"><Typography align="left">
+                                                        &emsp; Name on Card &emsp;&emsp;
+                                                        <input type="String" style={{ fontSize: 18 }} onChange={(e) => handle(e)} id="cardName" value={data.cardName} placeholder="Enter Name on Card" />
+
+                                                    </Typography>
+                                                    </div>
+                                                </>
+                                                <div id="field1"><Typography align="left">
+
+                                                    &emsp; Card Number &emsp; &ensp; &ensp;
+
+                                                    <input type="String" style={{ fontSize: 18 }} onChange={(e) => handle(e)} id="cardNumber" value={data.cardNumber} placeholder="Enter 16-digit Card#" />
+
+                                                </Typography>
+                                                </div>
+                                            </>
+                                            
+
+                                        </>
+
+                                        <div>
+                                            <div id="field1"><Typography align="left">
+
+                                            &emsp; Expiration &emsp; &emsp; &ensp;&ensp;&ensp;
+
+                                            <input type="String" style={{ fontSize: 18 }} onChange={(e) => handle(e)} id="cardExpiration" value={data.cardExpiration} placeholder="Enter 4-digit MMYY" />
+
+                                            </Typography>
+                                            </div>
+                                        </div>
+                                    </>
+
+                                    <div>
+
+                                        <div id="field1"><Typography align="left">
+
+                                        &emsp; CVV &emsp; &emsp; &emsp; &emsp; &ensp; &ensp;&thinsp;
+
+                                        <input type="String" style={{ fontSize: 18 }} onChange={(e) => handle(e)} id="cardCvv" value={data.cardCvv} placeholder="Enter 3-digit CVV" />
+
+                                    </Typography>
+                                    </div>
+                                    </div>
+                                </>
                             ) : (
-                                <></>
-                            )}                           
+                                    <>
+                                    </>
+                            )}  
+                            
                         </>
+
                     </div>
+
                 }
+
                
                 <h4 id="header4">Table Availability</h4>
                 { 
                     <div >
                         <>
                             {searches.length > 0 ? (                               
-                                <><><><>
+                                <>
+                                    <>
+                                        <>
+                                            <>
+                                                <div id="alert2">Register an account to earn points when dining with us!</div>
 
-                                <div id="alert2">Register an account to earn points when dining with us!</div>
-                                <form onClick={routeChange}>
-                                    <div id = "field">
-                                        <Typography style={{paddingTop: "50px" }}></Typography>
-                                        <button type="submit" ><Typography align="center">Register</Typography></button>  
-                                    </div> 
-                                </form>
-                                    <div id="field">
-                                    <TableContainer
-                                        component={Paper}
-                                        style={{width: 400, paddingTop: "5px"}}>
-                                        <Table aria-label="simple table">
-                                            <TableHead>
-                                                <TableRow>
-                                                    <TableCell align="center" style={{ backgroundColor: '#696773', color: 'white' }}>Table Number</TableCell>
-                                                    <TableCell align="center" style={{ backgroundColor: '#696773', color: 'white' }}>Capacity</TableCell>
-                                                </TableRow>
-                                            </TableHead>
-                                            <TableBody>
-                                                {searches.map((search) => (
-                                                    <TableRow key={search.table_id}>
-                                                        <TableCell align="center" component="th" scope="row">{"#" + search.table_id}</TableCell>
-                                                        <TableCell align="center">{search.capacity}</TableCell>
+                                                <form onClick={routeChange}>
 
-                                                    </TableRow>
+                                                    <div id="field1">                                                        
+                                                        <button type="submit" ><Typography align="center">Register</Typography></button>  
+                                                    </div>
+                                                </form>
+
+                                                <div id="field1">
+                                                    <TableContainer component={Paper} style={{ width: 400 }}>
+                                                        <Table aria-label="simple table">
+                                                            <TableHead>
+                                                                <TableRow>
+                                                                    <TableCell align="center" style={{ backgroundColor: '#696773', color: 'white' }}>Table Number</TableCell>
+                                                                    <TableCell align="center" style={{ backgroundColor: '#696773', color: 'white' }}>Capacity</TableCell>
+                                                                </TableRow>
+                                                            </TableHead>
+
+                                                            <TableBody>
+                                                                {searches.map((search) => (
+                                                                    <TableRow key={search.table_id}>
+                                                                        <TableCell align="center" component="th" scope="row">{"#" + search.table_id}</TableCell>
+                                                                        <TableCell align="center">{search.capacity}</TableCell>
+                                                                    </TableRow>
+                                                                ))}
+                                                            </TableBody>
+                                                        </Table>
+                                                    </TableContainer>
+                                                </div>
+                                            </>
+
+                                            <div id="field1">                                                
+                                                Book Table
+                                                <select id="table" name="table" style={{ fontSize: 18 }} onChange={(e) => handle(e)} value={data.table} required>
+                                                        <option value=""></option>
+                                                        {searches.map(search => (
+                                                            <option key={search.table_id} value={search.table_id}>
+                                                                {"#" + search.table_id}
+                                                            </option>
+                                                        ))}
+                                                </select>                                                
+                                            </div>
+                                        </>
+
+                                        <div id="field1">                                            
+                                            Add Second Table
+                                            <select id="additionalTable" name="additionalTable" style={{ fontSize: 18 }} onChange={(e) => handle(e)} value={data.additionalTable}>
+                                                <option value=""></option>
+                                                {searches.map(search => (
+                                                    <option key={search.table_id} value={search.table_id}>
+                                                        {"#" + search.table_id}
+                                                    </option>
                                                 ))}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer></div>
-                                </><div id="field"><Typography align="left" style={{ paddingTop: "10px" }}>
-                                    &emsp; Book Table &emsp; &emsp; &emsp; &emsp; &emsp; &ensp;
-                                    <select id="table" name="table" style={{ fontSize: 15 }} onChange={(e) => handle(e)} value={data.table} required>
-                                        <option value=""></option>
-                                        {searches.map(search => (
-                                            <option key={search.table_id} value={search.table_id}>
-                                                {"#" + search.table_id}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </Typography></div></><div id="field"><Typography align="left" style={{ paddingTop: "5px" }}>
-                                    &emsp; Add Second Table &emsp; &emsp; &ensp; &ensp;
-                                    <select id="additionalTable" name="additionalTable" style={{ fontSize: 15 }} onChange={(e) => handle(e)} value={data.additionalTable}>
-                                        <option value=""></option>
-                                        {searches.map(search => (
-                                            <option key={search.table_id} value={search.table_id}>
-                                                {"#" + search.table_id}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </Typography></div></><div></div></>
+                                            </select>
+                                            
+                                        </div>
+                                    </>
+                                    <div>
+                                    </div>
+                                </>
                             ) : (
-                                <></>
+                                    <>
+                                    </>
                             )}                           
                         </>
                     </div>

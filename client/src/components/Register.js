@@ -48,23 +48,23 @@ const Register = () =>
             <form id="field1" onSubmit={(e) => submit(e)}>
 
                 <div>
-                    <pre>Username <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="username" value={data.username} /></pre>
+                    <pre>Username <input type="String" style={{ fontSize: 18 }} onChange={(e) => handle(e)} id="username" value={data.username} /></pre>
                 </div>
                 
                 <div>
-                    <pre>Password <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="password" value={data.password} /></pre>
+                    <pre>Password <input type="String" style={{ fontSize: 18 }} onChange={(e) => handle(e)} id="password" value={data.password} /></pre>
                 </div>
                 
                 <div>
-                    <pre>Name <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="name_r" value={data.name_r} /></pre>
+                    <pre>Name <input type="String" style={{ fontSize: 18 }} onChange={(e) => handle(e)} id="name_r" value={data.name_r} /></pre>
                 </div>
                 
                 <div>
-                    <pre>Billing Address <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="billing_address" value={data.billing_address} /></pre>
+                    <pre>Billing Address <input type="String" style={{ fontSize: 18 }} onChange={(e) => handle(e)} id="billing_address" value={data.billing_address} /></pre>
                 </div>
                 
                 <div>
-                    <pre>Mailing Address <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="mailing_address" value={data.mailing_address} /></pre>
+                    <pre>Mailing Address <input type="String" style={{ fontSize: 18 }} onChange={(e) => handle(e)} id="mailing_address" value={data.mailing_address} /></pre>
                 </div>
                 
                 <div>
