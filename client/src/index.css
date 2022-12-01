@@ -12,13 +12,31 @@ code {
     monospace;
 }
 
+p 
+{
+    white-space: pre-wrap;
+}
+
 
 #field 
 {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: darkslategray;
+    color: white;
     font-size:16px;
+}
+
+#field1 
+{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: darkslategray;
+    color: white;
+    font-size: 16px;
+    padding: 30px;
 }
 
 #header
@@ -27,6 +45,26 @@ code {
     color:white;
     font-size: 30px;
     text-align:center;
+}
+
+#header1 {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: darkslategray;
+    color: white;
+    font-size: 40px;
+    padding: 30px;
+}
+
+#header4 {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(137, 130, 58);
+    color: white;
+    font-size: 30px;
+    padding: 30px;
 }
 
 #title
@@ -60,15 +98,17 @@ code {
     text-align:center;
 }
 
-.NavBar {
+.NavBar 
+{
     width: 100%;
     height: auto;
     position: top;
     z-index: 10;
     top: 20px;
-  }
+}
   
-  .NavBar ul {
+.NavBar ul
+{
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 25% 25% 25% 25%;
@@ -78,16 +118,18 @@ code {
     overflow: hidden;
     padding: 0;
     margin: 0;
-  }
+}
   
-  .NavBar ul li {
+.NavBar ul li
+{
     padding: 7px 0px;
     background: #567456;
     text-align: center;
     font-weight: 500;
     color: aliceblue;
-  }
+}
   
-  .NavBar ul li:hover {
+.NavBar ul li:hover
+{
     background: #4d553a;
-  }
+}

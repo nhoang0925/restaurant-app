@@ -55,39 +55,40 @@ const Login = () => {
 };
 
     return(
-    <div className = 'register'>
-        <h1><Typography align="left" style={{color:'orange', fontSize: 50}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login</Typography></h1>
-        <Typography align="center" style={{paddingTop: "30px"}}></Typography>
+        <div className='register'>
+            <div id="header1">Please Sign in to Continue</div>
+            <Typography align="center" style={{ paddingTop: "30px" }}></Typography>
 
-        <form onSubmit={(e)=> submit(e)}>
-        <div><Typography align="left" style={{paddingTop: "5px" }}>
-                &nbsp;&nbsp; User &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            
-                <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="login_username" value={data.login_username} />
-        </Typography></div>
-        
-        <div><Typography align="left" style={{paddingTop: "5px" }}>
-                &nbsp;&nbsp; Password &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
-                <input type = "String" style={{fontSize: 15}} onChange={(e)=>handle(e)} id="login_password" value={data.login_password} />
-        </Typography></div>
+            <form id = "field1" onSubmit={(e) => submit(e)}>
+                <div>
+                    <pre>Username   <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="login_username" value={data.login_username} /></pre>
+                </div>
+                
+                <div>
+                    <pre>Password   <input type="String" style={{ fontSize: 15 }} onChange={(e) => handle(e)} id="login_password" value={data.login_password} /></pre>
+                </div>
 
-    
-        <Typography align="center" style={{paddingTop: "20px" }}></Typography>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="submit">Submit</button>
-        </form>
+                <button type="submit">Login</button>
+            </form>
+            <Typography align="center" style={{ paddingTop: "30px" }}></Typography>
 
-        <h1>{loginStatus1}</h1>
-        <h1>Name: {loginStatus2}</h1>
-        <h1>Billing Address: {loginStatus3}</h1>
-        <h1>Mailing Address: {loginStatus4}</h1>
-        <h1>Payment Type: {loginStatus5}</h1>
-        <h1>Diner ID: {loginStatus6}</h1>
-        <h1>Total Points Earned: {loginStatus7}</h1>
-
-    </div>
-
+            <p id="field1">
+                {loginStatus1}
+                {<br />}
+                Name: {loginStatus2}
+                {<br />}
+                Billing Address: {loginStatus3}
+                {<br />}
+                Mailing Address: {loginStatus4}
+                {<br />}
+                Payment Type: {loginStatus5}
+                {<br />}
+                Diner ID: {loginStatus6}
+                {<br />}
+                Total Points Earned: {loginStatus7}                
+            </p>
+        </div>
     );
-
 }
 
 export default Login
